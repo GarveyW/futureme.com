@@ -20,8 +20,7 @@ def contact():
 
 @route('/wizard')
 def wizard():
-    #TODO: implement
-    return 'Check back soon!'
+    return template('wizard')
 
 @route('/education')
 def education():
@@ -30,13 +29,10 @@ def education():
 @route('/salt_smart')
 def salt_smart():
     return template('salt_smart')
-    #TODO: implement
-    return 'Check back soon!'
 
 @route('/salt_smart_answer')
 def salt_smart_answer():
-    #TODO: implement
-    return 'Check back soon!'
+    return template('salt_smart_answer')
 
 @route('/static/<filepath:path>')
 def server_static(filepath):
