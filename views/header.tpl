@@ -16,7 +16,7 @@
         padding: 5px; border: 1px solid #aaa;
       }
       .center {
-        margin: 0px auto;
+        margin: 5px auto;
         display: block;
       }
     </style>

@@ -18,6 +18,27 @@ def about():
 def contact():
     return template('contact')
 
+@route('/wizard')
+def wizard():
+    #TODO: implement
+    return 'Check back soon!'
+
+@route('/education')
+def education():
+    return template('education')
+    #TODO: implement
+    return 'Check back soon!'
+
+@route('/salt_smart')
+def salt_smart():
+    #TODO: implement
+    return 'Check back soon!'
+
+@route('/salt_smart_answer')
+def salt_smart_answer():
+    #TODO: implement
+    return 'Check back soon!'
+
 @route('/static/<filepath:path>')
 def server_static(filepath):
     return bottle.static_file(filepath, root='./static')
