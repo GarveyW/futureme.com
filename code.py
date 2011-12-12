@@ -26,11 +26,10 @@ def wizard():
 @route('/education')
 def education():
     return template('education')
-    #TODO: implement
-    return 'Check back soon!'
 
 @route('/salt_smart')
 def salt_smart():
+    return template('salt_smart')
     #TODO: implement
     return 'Check back soon!'
 

@@ -16,8 +16,13 @@
         padding: 5px; border: 1px solid #aaa;
       }
       .center {
-        margin: 5px auto;
-        display: block;
+        margin: 5px auto; display: block;
+      }
+      .large {
+        max-width:330px; max-height:230px;
+      }
+      .medium {
+        max-width:210px; max-height:150px;
       }
     </style>
 
