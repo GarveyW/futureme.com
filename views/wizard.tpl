@@ -103,7 +103,8 @@
         </div><!-- /clearfix -->
       </fieldset>
       <div class="actions">
-        <button type="submit" class="btn primary">Submit &raquo;</button>&nbsp;<button type="reset" class="btn">Cancel</button>
+        <button type="submit" class="btn primary">Submit &raquo;</button>
+        <button type="reset" class="btn">Cancel</button>
       </div>
       <div class="clearfix">
         <p>Practice fusion patient?</p>
