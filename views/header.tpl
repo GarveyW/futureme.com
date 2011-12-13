@@ -8,6 +8,8 @@
 
     <!-- styles -->
     <link href="./static/bootstrap.min.css" rel="stylesheet">
+    %for script in scripts:
+        <script type='text/javascript' src="./static/{{script}}"></script>
     <style type="text/css">
       body {
         padding-top: 60px;

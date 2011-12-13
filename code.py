@@ -36,12 +36,28 @@ def salt_smart_answer():
 
 @route('/chart', method = 'POST')
 def chart():
-    request = bottle.request
-    first_name = request.forms.get('firstName')
-    last_name = request.forms.get('lastName')
+    forms = bottle.request.forms
+    first_name = forms.get('firstName')
+    last_name = forms.get('lastName')
+    gender = forms.get('genderOptionsRadio')
+    age = forms.get('ageField')
+    weight = forms.get('weightField')
+    height_feet = forms.get('heightFeet')
+    height_inches = forms.get('heightInches')
+    height_total = height_feet * 12 + height_inches
+    bp_systolic  = forms.get('bloodPressureSystolic')
+    bp_diastolic = forms.get('bloodPressureDiastolic')
+    diseases = forms.get('diseasesCheckboxes')
     return template('chart', 
                     first_name = first_name,
                     last_name = last_name,
+                    gender = gender,
+                    age = age,
+                    weight = weight,
+                    height = height_total,
+                    bp_systolic = bp_systolic,
+                    bp_diastolic = bp_diastolic,
+                    diseases = diseases,
                     )
 
 @route('/static/<filepath:path>')

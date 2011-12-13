@@ -3,7 +3,7 @@
 <div class="hero-unit">
   <h1>Be Healthy!</h1>
   <p>Use Futureme to see how your health decisions right now affect your health in the future!</p>
-  <p><a class="btn primary large" href="/wizard">Try it out! &raquo;</a></p>
+  <p><a class="btn primary large" href="/wizard">Try it out!</a></p>
 </div>
 
 <!-- Example row of columns -->
@@ -11,12 +11,12 @@
   <div class="span8">
     <h2>Enter your info</h2>
     <p>Enter your information, and you can see how your decisions now will change your life in the future!</p>
-    <p><a class="btn" href="/wizard">View details &raquo;</a></p>
+    <p><a class="btn" href="/wizard">Be healthier!</a></p>
   </div>
   <div class="span8">
     <h2>Make better choices</h2>
      <p>Learn how to make better choices about what to eat, how to exercise, and more!</p>
-    <p><a class="btn" href="/education">View details &raquo;</a></p>
+    <p><a class="btn" href="/education">Learn More!</a></p>
  </div>
 </div>
 
