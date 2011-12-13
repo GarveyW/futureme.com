@@ -34,12 +34,15 @@ def salt_smart():
 def salt_smart_answer():
     return template('salt_smart_answer')
 
-@route('/chart')
+@route('/chart', method = 'POST')
 def chart():
     request = bottle.request
-    f_name = request.forms.get('firstName')
-    l_name = request.forms.get('lastName')
-    return template('chart')
+    first_name = request.forms.get('firstName')
+    last_name = request.forms.get('lastName')
+    return template('chart', 
+                    first_name = first_name,
+                    last_name = last_name,
+                    )
 
 @route('/static/<filepath:path>')
 def server_static(filepath):

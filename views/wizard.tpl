@@ -5,7 +5,7 @@
 </div>
 
 <div class="span16">
-  <form>
+  <form action="/chart" method="post">
     <fieldset>
       <legend>Information</legend>
       <div class="clearfix">
