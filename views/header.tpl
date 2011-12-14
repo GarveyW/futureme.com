@@ -8,8 +8,10 @@
 
     <!-- styles -->
     <link href="./static/bootstrap.min.css" rel="stylesheet">
+    % if 'scripts' not in globals(): scripts = []
     %for script in scripts:
-        <script type='text/javascript' src="./static/{{script}}"></script>
+       <script type='text/javascript' src="./static/{{script}}"></script>
+    %end
     <style type="text/css">
       body {
         padding-top: 60px;
