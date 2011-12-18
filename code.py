@@ -48,6 +48,8 @@ def chart():
     bp_systolic  = forms.get('bloodPressureSystolic')
     bp_diastolic = forms.get('bloodPressureDiastolic')
     diseases = forms.get('diseasesCheckboxes')
+    initial_data = [0.2, 0.3, 0.4, 0.5]
+    adjusted_data = [0.3, 0.4, 0.5, 0.6]
     return template('chart', 
                     first_name = first_name,
                     last_name = last_name,
@@ -58,6 +60,8 @@ def chart():
                     bp_systolic = bp_systolic,
                     bp_diastolic = bp_diastolic,
                     diseases = diseases,
+                    initial_data = initial_data,
+                    adjusted_data = adjusted_data,
                     )
 
 @route('/static/<filepath:path>')

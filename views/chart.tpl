@@ -13,7 +13,7 @@
 <script type="text/javascript">
   var bar_buffer = 30;
   var onControlMyBloodPressure = function() {
-    data = [3, 6, 9, 12];//$percent_under;
+    data = {{adjusted_data}};//$percent_under;
     /*chart.selectAll("rect")
       .data(data2)
       .enter().append("svg:rect")
