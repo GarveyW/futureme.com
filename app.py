@@ -1,7 +1,13 @@
 #!/usr/bin/env python
 import bottle
+import ConfigParser as configparser
 
-bottle.debug(True)
+config = configparser.RawConfigParser()
+config.read('app.conf')
+DEPLOYMENT = config.get('server', 'deployment')
+PORT = config.getint('server', 'port')
+
+bottle.debug(DEPLOYMENT != 'prod')
 
 route = bottle.route
 template = bottle.template
@@ -68,4 +74,5 @@ def chart():
 def server_static(filepath):
     return bottle.static_file(filepath, root='./static')
 
-bottle.run(host='localhost', port=8080, reloader=True)
+bottle.run(host='localhost', port=PORT, reloader=(DEPLOYMENT == 'dev'))
+
