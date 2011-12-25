@@ -4,7 +4,7 @@
   <h2>Your Future</h2>
   <p>{{first_name}}, this is our prognosis of your health!</p>
   <a href="javascript:onControlMyBloodPressure();" class="btn primary large" id="controlmybloodpressure">Control My Blood Pressure! &raquo;</a>
-  <a href="/static/education.html" class="btn large" id="learnmorebutton">Learn More! &raquo;</a>
+  <a href="/education" class="btn large" id="learnmorebutton">Learn More! &raquo;</a>
 </div>
 <div class="span16" id="chartcontainer">
   <div id="chart">
