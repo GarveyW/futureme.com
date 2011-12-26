@@ -84,9 +84,6 @@ def chart():
     count_above = [0] * 4
     count_below = [0] * 4
 
-    #BIOGRAPHICAL_COHORT = '(select patientguid from syncpatient2 where gender=%(gender)s and yearofbirth between %(startyear)d and %(endyear)d) '
-    BIOGRAPHICAL_COHORT = '(select patientguid from syncpatient2 where gender=\'M\' and yearofbirth between 1975 and 1985) '
-    
     for op in ['>', '<']:
         for jj in range(4):
             health_query = ''
@@ -95,22 +92,23 @@ def chart():
             elif jj == 1:
                 health_query = 'and heartdisease=1 '
             elif jj == 2:
-                health_query = 'and stroke=2 '
+                health_query = 'and stroke=1 '
             elif jj == 3:
                 health_query = 'and kidneyproblem=1 '
 
-            query = 'select count(*) as count from visit2 where gender=\'M\' and yearofbirth between 1960 and 1975 and systolicbp>130 and diastolicbp>90 ' + health_query
+            query = 'select count(*) as count from visit2 where gender=\'%(gender)s\' and yearofbirth between %(startyear)d and %(endyear)d and bmi between %(bmimin)f and %(bmimax)f and systolicbp%(op)s%(targetsys)d and diastolicbp%(op)s%(targetdia)d '.replace('%(op)s', op) + health_query
 
             args = {'gender': gender, 
-                    'startyear': start_year, 
-                    'endyear': end_year, 
-                    'bmimin': bmi_min, 
-                    'bmimax': bmi_max, 
-                    'op': op, 
-                    'targetdia': target_diastolic, 
-                    'targetsys': target_systolic}
+                    'startyear': int(start_year),
+                    'endyear': int(end_year), 
+                    'bmimin': float(bmi_min), 
+                    'bmimax': float(bmi_max), 
+                    'targetdia': int(target_diastolic), 
+                    'targetsys': int(target_systolic)}
+            query = query % args
             if DEPLOYMENT == 'dev':
-                print query % args
+                print query #query % args
+                #import pdb;pdb.set_trace()
             dbcur.execute(query, args)
             count = dbcur.fetchone()[0]
             if DEPLOYMENT == 'dev':
