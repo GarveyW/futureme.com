@@ -2,7 +2,10 @@
 
 <div class="hero-unit">
   <h2>Your Future</h2>
-  <p>{{first_name}}, this is our prognosis of your health!</p>
+  <p>{{first_name}} {{last_name}}, this is our prognosis of your health!
+  Your target blood pressure: <font color="#0f0">{{target_systolic}}/{{target_diastolic}}</a>
+  Your current blood pressure: <font color="#f00">{{bp_systolic}}/{{bp_diastolic}}</a>
+  
   <a href="javascript:onControlMyBloodPressure();" class="btn primary large" id="controlmybloodpressure">Control My Blood Pressure! &raquo;</a>
   <a href="/education" class="btn large" id="learnmorebutton">Learn More! &raquo;</a>
 </div>
@@ -40,7 +43,7 @@
   }
 var width = document.getElementById('chart').offsetWidth / 4;
 var height = 400;
-var data = [2, 3, 6, 9];//$percent_over;
+var data = {{initial_data}};//$percent_over;
 var chart = d3.select("div#chart")
 .append("svg:svg")
 .attr("class", "chart")
@@ -82,10 +85,6 @@ var chart = d3.select("div#chart")
   .attr("text-anchor", "center")
   .text(function (d, i) { return ["Healthy ("+Math.round(d*100)+" %)","Heart Disease ("+Math.round(d*100)+" %)", "Stroke ("+Math.round(d*100)+" %)", "Kidney Problems ("+Math.round(d*100)+" %)"][i]; });
 </script>
-
-
-
-
 
 %include footer
 

@@ -3,3 +3,8 @@
 deployment = dev 
 port = 8002
 
+[database]
+dbname = futureme
+username =
+passwd =
+
