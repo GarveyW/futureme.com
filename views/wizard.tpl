@@ -26,13 +26,13 @@
             <ul class="inputs-list">
               <li>
                 <label>
-                  <input type="radio" checked name="genderOptionsRadio" value="male" />
+                  <input type="radio" checked name="genderOptionsRadio" value="M" />
                   <span>Male</span>
                 </label>
               </li>
               <li>
                 <label>
-                  <input type="radio" name="genderOptionsRadio" value="female" />
+                  <input type="radio" name="genderOptionsRadio" value="F" />
                   <span>Female</span>
                 </label>
               </li>
