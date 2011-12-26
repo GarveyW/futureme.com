@@ -49,11 +49,7 @@ def chart():
     dbcon = db.connect(host='localhost', user=DB_USER, passwd=DB_PASSWD, db=DB_DBNAME)
     dbcur = dbcon.cursor()
 
-    disease_statements = ['icd9code between 410 and 415 or icd9code between 425 and 426 or icd9code between 428 and 430',
-                          'icd9code between 430 and 439 or icd9code between 440 and 449',
-                          'icd9code between 580 and 590']
-
-    BMI_RANGES = [0, 14, 18, 24.9, 29.9, 34.9, 1000]
+    BMI_RANGES = [0.0, 14.0, 18.0, 24.9, 29.9, 34.9, 1000.0]
     AGE_RANGE_RADIUS = 10
     AGE_RANGE_CENTER = 20
 
@@ -88,29 +84,41 @@ def chart():
     count_above = [0] * 4
     count_below = [0] * 4
 
-    BIOGRAPHICAL_COHORT = '(select patientguid from syncpatient2 where gender=%(gender)s and yearofbirth between %(startyear)d and %(endyear)d) '
+    #BIOGRAPHICAL_COHORT = '(select patientguid from syncpatient2 where gender=%(gender)s and yearofbirth between %(startyear)d and %(endyear)d) '
+    BIOGRAPHICAL_COHORT = '(select patientguid from syncpatient2 where gender=\'M\' and yearofbirth between 1975 and 1985) '
     
     for op in ['>', '<']:
         for jj in range(4):
-            query = 'select count(distinct chartguid) as count from syncchart2 where patientguid in ' + BIOGRAPHICAL_COHORT + \
-                    ('and patientguid in (select distinct patientguid from syncdiagnosis2 where ' + disease_statements[jj] + ') ') if (jj < 3) else '' + \
-                    'and bmi between %(bmimin)d and %(bmimax)d ' + \
-                    'and systolicbp %(op)s %(targetsys)d and diastolicbp %(op)s %(targetdia)d'
-            dbcur.execute(query, {'gender': gender, 
-                                  'startyear': start_year,
-                                  'endyear': end_year,
-                                  'bmimin': bmi_min,
-                                  'bmimax': bmi_max, 
-                                  'op': op,
-                                  'targetdia': target_diastolic,
-                                  'targetsys': target_systolic})
-            import pdb;pdb.set_trace()
+            health_query = ''
+            if jj == 0:
+                health_query = 'and heartdisease=0 and stroke=0 and kidneyproblem=0 '
+            elif jj == 1:
+                health_query = 'and heartdisease=1 '
+            elif jj == 2:
+                health_query = 'and stroke=2 '
+            elif jj == 3:
+                health_query = 'and kidneyproblem=1 '
 
-            row = dbcur.fetchone()[0]
+            query = 'select count(*) as count from visit2 where gender=\'M\' and yearofbirth between 1960 and 1975 and systolicbp>130 and diastolicbp>90 ' + health_query
+
+            args = {'gender': gender, 
+                    'startyear': start_year, 
+                    'endyear': end_year, 
+                    'bmimin': bmi_min, 
+                    'bmimax': bmi_max, 
+                    'op': op, 
+                    'targetdia': target_diastolic, 
+                    'targetsys': target_systolic}
+            if DEPLOYMENT == 'dev':
+                print query % args
+            dbcur.execute(query, args)
+            count = dbcur.fetchone()[0]
+            if DEPLOYMENT == 'dev':
+                print count
             if op == '>':
-                count_above[jj] = row.count
+                count_above[jj] = count
             elif op == '<':
-                count_below[jj] = row.count
+                count_below[jj] = count
 
     total_above = sum(count_above)
     total_below = sum(count_below)
