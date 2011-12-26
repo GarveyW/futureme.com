@@ -1,0 +1,29 @@
+cohort from syncpatient2
+select patientguid from syncpatient2 where gender='M' and yearofbirth between 1950 and 1960;
+
+cohort from syncdiagnosis2
+select distinct patientguid from syncdiagnosis2 where icd9code between 580 and 590;
+
+
+PATIENT_COHORT
+(select distinct patientguid from syncpatient2 where gender='M' and yearofbirth between 1960 and 1970)
+
+
+ALL BELOW BP
+select distinct chartguid from syncchart2 where patientguid in (select distinct patientguid from syncpatient2 where gender='M' and yearofbirth between 1960 and 1970) and bmi between 26 and 32 and systolicbp < 90 and diastolicbp < 130;
+
+HEART DISEASE
+select distinct patientguid from syncdiagnosis2 where icd9code between 410 and 415 or icd9code between 425 and 426 or icd9code between 428 and 430;
+
+STROKE
+select distinct patientguid from syncdiagnosis2 where icd9code between 430 and 439 or icd9code between 440 and 449;
+
+KIDNEY
+select distinct patientguid from syncdiagnosis2 where icd9code between 580 and 590;
+
+HEALTHY
+select distinct patientguid from syncdiagnosis2 where not(icd9code between 580 and 590 or icd9code between 430 and 439 or icd9code between 440 and 449 or icd9code between 410 and 415 or icd9code between 425 and 426 or icd9code between 428 and 430);
+
+
+LEGIT:
+select distinct chartguid from syncchart2 where patientguid in (PATIENT_COHORT) and patientguid in (DISEASE_CATEGORY) and bmi between MINBMI and MAXBMI and BLOOD_PRESSURE
