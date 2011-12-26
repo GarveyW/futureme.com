@@ -2,11 +2,14 @@
 
 <div class="hero-unit">
   <h2>Your Future</h2>
-  <p>{{first_name}} {{last_name}}, this is our prognosis of your health!
-  Your target blood pressure: <font color="#0f0">{{target_systolic}}/{{target_diastolic}}</a>
-  Your current blood pressure: <font color="#f00">{{bp_systolic}}/{{bp_diastolic}}</a>
-  
-  <a href="javascript:onControlMyBloodPressure();" class="btn primary large" id="controlmybloodpressure">Control My Blood Pressure! &raquo;</a>
+  <p>{{name + ', t' if name else 'T'}}his is our prognosis of your health! Your target blood pressure is:{{target_systolic}}/{{target_diastolic}}.<br>
+  Your current blood pressure: <font color="#{{'0f0' if is_healthy else 'f00'}}">{{systolicbp}}/{{diastolicbp}}</font>.<br>
+  %if is_healthy:
+    Your blood pressure is currently at a healthy level. Press the blue button to see what would happen if your blood pressure gets too high.
+  %else:
+    Your blood pressure is higher than it should be - putting you at a higher risk for many diseases. Press the blue button to see what would happen if you made positive changes to control your blood pressure.
+  %end
+  <a href="javascript:onControlMyBloodPressure();" class="btn primary large" id="controlmybloodpressure">{{'Raise My Blood Pressure' if is_healthy else 'Control My Blood Pressure!'}} &raquo;</a>
   <a href="/education" class="btn large" id="learnmorebutton">Learn More! &raquo;</a>
 </div>
 <div class="span16" id="chartcontainer">
@@ -16,16 +19,7 @@
 <script type="text/javascript">
   var bar_buffer = 30;
   var onControlMyBloodPressure = function() {
-    data = {{adjusted_data}};//$percent_under;
-    /*chart.selectAll("rect")
-      .data(data2)
-      .enter().append("svg:rect")
-      .attr("x", 0)
-      .attr("y", 0)
-      .attr("width", 30)
-      .attr("height", 30)
-      .attr("fill: red")
-      .attr("opacity", 0.7);*/
+    data = {{above_data if is_healthy else below_data}};
     chart.selectAll("rect")
       .data(data)
       .transition()
@@ -43,7 +37,7 @@
   }
 var width = document.getElementById('chart').offsetWidth / 4;
 var height = 400;
-var data = {{initial_data}};//$percent_over;
+var data = {{below_data if is_healthy else above_data}};
 var chart = d3.select("div#chart")
 .append("svg:svg")
 .attr("class", "chart")
@@ -55,15 +49,6 @@ var chart = d3.select("div#chart")
   var y = d3.scale.linear()
 .domain([0, d3.max(data)])
   .range([0, height]);
-  // chart.selectAll("rect")
-  //     .data(data2)
-  //       .enter().append("svg:rect")
-  //          .attr("x", function(d, i) { return i * width; })
-  //          .attr("y", function(d) { return height - d; })
-  //          .attr("width", width)
-  //          .attr("height", function(d) { return d; })
-  //          .attr("fill", "red")
-  //          .attr("opacity", 0.0);
   chart.selectAll("rect")
 .data(data)
   .enter().append("svg:rect")
@@ -81,7 +66,6 @@ var chart = d3.select("div#chart")
   .attr("dy", -height + 100)
   .attr("font-size", 16)
   .attr("dx", 3)
-  //.attr(
   .attr("text-anchor", "center")
   .text(function (d, i) { return ["Healthy ("+Math.round(d*100)+" %)","Heart Disease ("+Math.round(d*100)+" %)", "Stroke ("+Math.round(d*100)+" %)", "Kidney Problems ("+Math.round(d*100)+" %)"][i]; });
 </script>

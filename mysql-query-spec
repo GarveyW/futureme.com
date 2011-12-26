@@ -8,7 +8,6 @@ select distinct patientguid from syncdiagnosis2 where icd9code between 580 and 5
 PATIENT_COHORT
 (select distinct patientguid from syncpatient2 where gender='M' and yearofbirth between 1960 and 1970)
 
-
 ALL BELOW BP
 select distinct chartguid from syncchart2 where patientguid in (select distinct patientguid from syncpatient2 where gender='M' and yearofbirth between 1960 and 1970) and bmi between 26 and 32 and systolicbp < 90 and diastolicbp < 130;
 
