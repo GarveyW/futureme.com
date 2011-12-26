@@ -18,7 +18,7 @@
 
   <div class="row">
     <div class="span4">
-      <img src="/static/images/kurt.jpg" height="130" width="auto" class="frame center"/>
+      <img src="/static/images/fruits.jpg" height="130" width="auto" class="frame center"/>
     </div>
     <div class="span12">
       <h3>Eat a low fat diet with lots of fruits and vegetables</h3>
@@ -27,7 +27,7 @@
 
   <div class="row">
     <div class="span4">
-      <img src="/static/images/kurt.jpg" height="130" width="auto" class="frame center"/>
+      <img src="/static/images/salt.jpg" height="130" width="auto" class="frame center"/>
     </div>
     <div class="span12">
       <h3>Limit your salt</h3>
@@ -36,7 +36,7 @@
 
   <div class="row">
     <div class="span4">
-      <img src="/static/images/kurt.jpg" height="130" width="auto" class="frame center"/>
+      <img src="/static/images/rockclimbing.jpg" height="130" width="auto" class="frame center"/>
     </div>
     <div class="span12">
       <h3>Get 1/2 an hour of aerobic activity every other day</h3>
@@ -45,7 +45,7 @@
 
   <div class="row">
     <div class="span4">
-      <img src="/static/images/kurt.jpg" height="130" width="auto" class="frame center"/>
+      <img src="/static/images/teetotaler.jpg" height="130" width="auto" class="frame center"/>
     </div>
     <div class="span12">
       <h3>Limit alcohol consumption!</h3>
