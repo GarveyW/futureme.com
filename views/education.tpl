@@ -8,7 +8,7 @@
 <div class="span16">
   <div class="row">
     <div class="span4">
-      <img src="/static/images/kurt.jpg" height="130" width="auto" class="frame center"/>
+      <img src="/static/images/scale.jpg" height="130" width="auto" class="frame center"/>
     </div>
     <div class="span12">
       <h3>Maintain a healthy body weight</h3>
