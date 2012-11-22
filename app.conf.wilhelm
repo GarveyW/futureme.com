@@ -1,0 +1,10 @@
+[server]
+#deployment = {dev, stage, prod}, stage currently unused
+deployment=dev 
+port=8002
+
+[database]
+dbname=hackhealth
+username=root
+passwd=wilhelmsqlrootpw1$
+

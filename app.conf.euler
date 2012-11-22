@@ -1,0 +1,10 @@
+[server]
+#deployment = {dev, stage, prod}, stage currently unused
+deployment=prod 
+port=8002
+
+[database]
+dbname=futureme
+username=futureme
+passwd=theFUTUREof3u132
+

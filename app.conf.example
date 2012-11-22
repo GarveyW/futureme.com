@@ -1,0 +1,21 @@
+# Idea of usage:
+# app.conf.example is the example/defaults for a given config, and is versioned by git.
+# app.conf.hostname is the (optional) git-versioned configuration for hostname.
+# app.conf is actually referenced by the program, and should either be a link to app.conf.hostname
+#   or should be a modified duplicate of app.conf.example.
+# 
+# To add new variables to a config:
+# Make the desired changes to varibles in app.conf.example
+# vimdiff app.conf.hostname (or app.conf)
+# Resolve differences, and we're done. app.conf is updated because it is a link to app.conf.hostname.
+
+[server]
+#deployment = {dev, stage, prod}, stage currently unused
+deployment = dev 
+port = 8002
+
+[database]
+dbname = futureme
+username =
+passwd =
+
